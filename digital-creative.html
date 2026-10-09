@@ -54,11 +54,6 @@
     .meta-box p {
       margin: 4px 0;
     }
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-color);
-      margin: 32px 0;
-    }
     ul, ol {
       padding-left: 24px;
     }
@@ -82,6 +77,24 @@
     }
     tr:nth-child(even) {
       background-color: #fcfcfc;
+    }
+    /* Styling Gambar Agar Rapi */
+    figure {
+      margin: 32px 0;
+      text-align: center;
+    }
+    figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      object-fit: cover;
+    }
+    figcaption {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 10px;
     }
     .callout {
       background-color: #eff6ff;
@@ -110,9 +123,15 @@
     <h2>1. Perbedaan Digital Kreatif dan Sekadar Digitalisasi</h2>
     <p>Meskipun sering digunakan secara bergantian, <em>"Digitalisasi"</em> dan <em>"Digital Kreatif"</em> berada pada dua level yang berbeda:</p>
     <ul>
-      <li><strong>Digitalisasi (<em>Digitalization</em>):</strong> Proses teknis mengubah proses, media, atau objek fisik (analog) menjadi format digital. Tujuannya adalah efisiensi, penyimpanan, dan otomatisasi. Contohnya: memindai buku menjadi format PDF, absensi sidik jari / <em>face recognition</em>, atau memindahkan arsip fisik ke penyimpanan awan (<em>cloud</em>). Digitalisasi tidak mengubah inti dari nilai produk, melainkan medium dan wujudnya.</li>
-      <li><strong>Digital Kreatif:</strong> Langkah pemanfaatan teknologi digital sebagai "kanvas" dan "alat" untuk menciptakan nilai baru, karya inovatif, dan pengalaman yang belum pernah ada sebelumnya (<em>value creation</em>). Tujuannya adalah penciptaan nilai tambah. Contohnya: tur museum interaktif berbasis Virtual Reality (VR), desain UI/UX aplikasi yang mengubah perilaku pengguna, animasi 3D, atau kampanye pemasaran digital interaktif.</li>
+      <li><strong>Digitalisasi (<em>Digitalization</em>):</strong> Proses teknis mengubah proses, media, atau objek fisik (analog) menjadi format digital. Tujuannya adalah efisiensi, penyimpanan, dan otomatisasi. Contohnya: memindai buku menjadi format PDF, absensi sidik jari, atau memindahkan arsip fisik ke <em>cloud</em>.</li>
+      <li><strong>Digital Kreatif:</strong> Langkah pemanfaatan teknologi digital sebagai "kanvas" dan "alat" untuk menciptakan nilai baru, karya inovatif, dan pengalaman yang belum pernah ada sebelumnya. Tujuannya adalah penciptaan nilai tambah. Contohnya: tur museum interaktif, desain UI/UX aplikasi, animasi 3D, atau kampanye digital.</li>
     </ul>
+
+    <!-- Gambar 1 dari Unsplash/Freepik -->
+    <figure>
+      <img src="gambar-1.jpg" alt="Ilustrasi Digital Kreatif dan Inovasi">
+      <figcaption>Gambar 1: Pemanfaatan teknologi untuk menciptakan inovasi dan pengalaman baru.</figcaption>
+    </figure>
 
     <table>
       <thead>
@@ -142,38 +161,44 @@
     </table>
 
     <h2>2. Mengapa Kreativitas Dapat Menjadi Sumber Nilai Ekonomi?</h2>
-    <p>Dalam ekonomi modern (<em>knowledge economy</em> atau ekonomi kreatif), kreativitas telah menjadi mata uang baru karena beberapa faktor:</p>
+    <p>Dalam ekonomi kreatif, kreativitas telah menjadi mata uang baru karena beberapa faktor:</p>
     <ol>
-      <li><strong>Ketersediaan yang Tidak Terbatas:</strong> Berbeda dengan sumber daya alam yang habis jika dieksploitasi, kreativitas manusia tidak terbatas dan semakin terasah semakin sering digunakan.</li>
-      <li><strong>Diferensiasi di Pasar yang Jenuh (<em>Unique Selling Proposition</em>):</strong> Desain, narasi (<em>storytelling</em>), dan estetika menjadi faktor pembeda produk di tengah kemudahan produksi massal oleh kompetitor.</li>
-      <li><strong>Solusi Pemecahan Masalah (<em>Problem Solving</em>):</strong> Kemampuan menemukan cara baru yang efisien dalam mengatasi kendala konsumen yang kemudian melahirkan model startup inovatif.</li>
-      <li><strong>Hak Kekayaan Intelektual (HKI):</strong> Ide kreatif yang terlindungi hukum (Hak Cipta, Paten, Merek Dagang) membuka aliran pendapatan jangka panjang melalui royalti dan lisensi.</li>
+      <li><strong>Ketersediaan yang Tidak Terbatas:</strong> Kreativitas manusia tidak terbatas dan semakin terasah semakin sering digunakan.</li>
+      <li><strong>Diferensiasi (<em>Unique Selling Proposition</em>):</strong> Desain, narasi, dan estetika menjadi faktor pembeda produk di tengah kemudahan produksi massal.</li>
+      <li><strong>Pemecahan Masalah (<em>Problem Solving</em>):</strong> Kemampuan menemukan cara baru yang efisien dalam mengatasi kendala konsumen.</li>
+      <li><strong>Hak Kekayaan Intelektual (HKI):</strong> Ide kreatif yang terlindungi hukum (Hak Cipta, Paten) membuka aliran pendapatan melalui royalti.</li>
     </ol>
 
     <h2>3. Apa yang Membuat Sebuah Solusi Dapat Disebut Bisnis Digital?</h2>
     <p>Sebuah entitas bisnis dapat dikategorikan sebagai bisnis digital yang sesungguhnya apabila memenuhi karakteristik berikut:</p>
     <ul>
-      <li><strong>Teknologi sebagai <em>Core Value</em>:</strong> Teknologi merupakan motor penggerak utama cara nilai diciptakan, bukan sekadar alat bantu administrasi.</li>
-      <li><strong>Model Distribusi dan Interaksi Digital:</strong> Penyerahan produk atau layanan dilakukan via platform (contoh: SaaS, konten streaming, e-commerce, atau ride-hailing).</li>
-      <li><strong>Berbasis Data (<em>Data-Driven</em>):</strong> Mengumpulkan dan mengolah data perilaku pengguna secara <em>real-time</em> untuk mempersonalisasi layanan dan memprediksi kebutuhan pasar.</li>
-      <li><strong>Skalabilitas Eksponensial (<em>Scalability</em>):</strong> Mampu melayani peningkatan pengguna dalam skala besar tanpa penambahan beban biaya marginal yang sebanding.</li>
+      <li><strong>Teknologi sebagai <em>Core Value</em>:</strong> Teknologi merupakan motor penggerak utama cara nilai diciptakan, bukan sekadar alat bantu.</li>
+      <li><strong>Model Distribusi Digital:</strong> Penyerahan produk atau layanan dilakukan via platform (contoh: SaaS, e-commerce, atau ride-hailing).</li>
+      <li><strong>Berbasis Data (<em>Data-Driven</em>):</strong> Mengumpulkan data perilaku pengguna secara <em>real-time</em> untuk mempersonalisasi layanan.</li>
+      <li><strong>Skalabilitas Eksponensial (<em>Scalability</em>):</strong> Mampu melayani peningkatan pengguna dalam skala besar tanpa penambahan biaya yang sebanding.</li>
     </ul>
 
+    <!-- Gambar 2 dari Unsplash/Freepik -->
+    <figure>
+      <img src="gambar-2.jpg" alt="Ilustrasi Ekosistem Bisnis Digital">
+      <figcaption>Gambar 2: Ekosistem bisnis digital saling terhubung antara data, platform cloud, dan pengguna.</figcaption>
+    </figure>
+
     <h2>4. Tiga Peran AI dalam Proses Kreatif</h2>
-    <p>Kecerdasan Buatan (AI) kini menjadi mitra kolaborasi (<em>co-creator</em>) strategis:</p>
+    <p>Kecerdasan Buatan (AI) kini menjadi mitra kolaborasi strategis:</p>
     <ol>
-      <li><strong>Sebagai Katalisator Ide (<em>Brainstorming & Ideation</em>):</strong> Membantu mengatasi hambatan kreatif (<em>creative block</em>) dengan menghadirkan puluhan draf konsep, referensi visual, dan kerangka cerita secara instan.</li>
-      <li><strong>Otomatisasi Tugas Repetitif (<em>Efficiency & Execution</em>):</strong> Memangkas pekerjaan teknis yang memakan waktu (seperti memotong latar video, restorasi audio, atau manipulasi gambar) sehingga kreator dapat fokus pada aspek konseptual.</li>
-      <li><strong>Personalisasi Karya secara Dinamis (<em>Hyper-Personalization</em>):</strong> Menyesuaikan konten, visual, atau pesan secara langsung sesuai data psikografis dan preferensi tiap individu penikmat karya.</li>
+      <li><strong>Katalisator Ide (<em>Brainstorming</em>):</strong> Membantu mengatasi hambatan kreatif dengan menghadirkan puluhan draf konsep dan kerangka cerita secara instan.</li>
+      <li><strong>Otomatisasi Tugas Repetitif:</strong> Memangkas pekerjaan teknis (seperti memotong latar video atau manipulasi gambar) sehingga kreator dapat fokus pada konsep.</li>
+      <li><strong>Personalisasi Dinamis:</strong> Menyesuaikan konten dan pesan secara langsung sesuai preferensi individu penikmat karya.</li>
     </ol>
 
-    <h2>5. Risiko AI yang Harus Diperiksa Sebelum Karya Dipublikasikan</h2>
-    <p>Keterlibatan manusia (<em>human-in-the-loop</em>) mutlak diperlukan guna memitigasi sejumlah risiko berikut sebelum karya dirilis:</p>
+    <h2>5. Risiko AI yang Harus Diperiksa Sebelum Publikasi</h2>
+    <p>Keterlibatan manusia mutlak diperlukan guna memitigasi risiko berikut:</p>
     <ul>
-      <li><strong>Risiko Pelanggaran Hak Cipta (<em>Copyright Infringement</em>):</strong> Memastikan hasil olahan AI telah dimodifikasi substansial dan tidak meniru karya pihak lain secara ilegal.</li>
-      <li><strong>Bias, Halusinasi, dan Kesalahan Fakta:</strong> Melakukan verifikasi data dan pengecekan fakta (<em>fact-checking</em>) agar karya tidak menyebarkan kekeliruan informasi atau bias kelompok.</li>
-      <li><strong>Kekurangan "Rasa" dan Kedalaman Emosional:</strong> Memberikan sentuhan emosi manusia agar karya tidak terkesan hambar atau sekadar mekanis.</li>
-      <li><strong>Risiko Privasi Data:</strong> Mencegah masuknya data rahasia atau informasi privat ke dalam model AI publik saat proses pembuatan perintah (<em>prompting</em>).</li>
+      <li><strong>Risiko Pelanggaran Hak Cipta:</strong> Memastikan hasil olahan AI telah dimodifikasi dan tidak meniru karya pihak lain.</li>
+      <li><strong>Bias dan Kesalahan Fakta:</strong> Melakukan verifikasi data agar karya tidak menyebarkan kekeliruan informasi.</li>
+      <li><strong>Kekurangan Kedalaman Emosional:</strong> Memberikan sentuhan emosi manusia agar karya tidak terkesan mekanis.</li>
+      <li><strong>Risiko Privasi Data:</strong> Mencegah masuknya data rahasia ke dalam model AI publik saat proses <em>prompting</em>.</li>
     </ul>
 
     <div class="callout">
