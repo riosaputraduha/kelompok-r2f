@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Tugas Kelompok - Digital Kreatif</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --secondary: #ec4899;
+      --bg: #f3f4f6;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: rgba(229, 231, 235, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative Background Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.6;
+    }
+    .blob-1 {
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: #c7d2fe;
+    }
+    .blob-2 {
+      bottom: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: #fbcfe8;
+    }
+    .blob-3 {
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: #e0e7ff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      flex: 1;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0e7ff, #fbcfe8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .author-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .author-nim {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .card .desc {
+      font-size: 1rem;
+      color: #4b5563;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 32px 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      animation: fadeIn 1s ease-out 0.6s both;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.25rem; }
+      .container { padding: 40px 20px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* --- CSS Header Tetap (Khusus Index) --- */
+    body {
+      margin: 0; /* Menghilangkan margin bawaan browser */
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+    }
+    .brand-logo {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 1.1rem;
+    }
+    .btn-feedback {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+    }
+    .btn-feedback:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+    }
+    /* Beri jarak padding untuk container agar tidak tertutup header */
+    .container {
+      padding: 40px 20px;
+    }
+
+    /* --- Gaya Form Kritik & Saran --- */
+    .feedback-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 50px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+    }
+    .feedback-section h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .feedback-section p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .btn-submit {
+      background-color: #10b981;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
+    .btn-submit:hover {
+      background-color: #059669;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Sticky Header Index -->
+  <nav class="sticky-header">
+    <div class="brand-logo">📚 Portal Tugas</div>
+    <!-- Link mengarah ke halaman Pull Request repositori Anda -->
+    <a href="#kritik-saran" class="btn-feedback">
+      💡 Kritik & Saran
+    </a>
+  </nav>
+
+  <div class="container">
+    <header>
+      <span class="badge">19.7C.26 &ndash; Digital Kreatif</span>
+      <h1>Repository Tugas Kelompok</h1>
+      <p>Eksplorasi ide, analisis, dan publikasi tugas mahasiswa dalam memahami transformasi digital kreatif.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Kartu 1: Tugas Anda -->
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h2>Memahami Transformasi Digital</h2>
+
+        <div class="author-info">
+          <div class="author-avatar">RD</div>
+          <div class="author-details">
+            <span class="author-name">Rio Saputra Duha</span>
+            <span class="author-nim">NIM: 19232062</span>
+          </div>
+        </div>
+
+        <p class="desc">Pembahasan mendalam mengenai perbedaan digitalisasi dengan digital kreatif, nilai ekonomi, dan peran AI dalam industri kreatif.</p>
+
+        <a href="digital-creative.html" class="btn">
+          Baca Artikel
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Kartu 2: Anggota 2 -->
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h2>Judul Tugas Anggota 2</h2>
+
+        <div class="author-info">
+          <div class="author-avatar">T1</div>
+          <div class="author-details">
+            <span class="author-name">Raden Jihaad F I A</span>
+            <span class="author-nim">NIM: 19230765</span>
+          </div>
+        </div>
+
+        <p class="desc">Ringkasan singkat tentang topik tugas atau proyek yang dikerjakan oleh anggota kedua dalam pengembangan digital.</p>
+
+        <a href="tugas-anggota2.html" class="btn">
+          Baca Artikel
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Kartu 3: Anggota 3 -->
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h2>Judul Tugas Anggota 3</h2>
+
+        <div class="author-info">
+          <div class="author-avatar">T2</div>
+          <div class="author-details">
+            <span class="author-name">Faiz Dzakiy Helsan</span>
+            <span class="author-nim">NIM: 19231870</span>
+          </div>
+        </div>
+
+        <p class="desc">Ringkasan singkat tentang topik tugas atau proyek inovatif yang dikerjakan oleh anggota ketiga.</p>
+
+        <a href="tugas-anggota3.html" class="btn">
+          Baca Artikel
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Form Kritik & Saran -->
+    <div class="feedback-section" id="kritik-saran">
+      <h2>Kirim Kritik & Saran</h2>
+      <p>Masukan Anda akan dikirimkan sebagai <strong>Issue</strong> secara langsung ke repositori GitHub kami.</p>
+      
+      <form id="feedbackForm">
+        <div class="form-group">
+          <label for="senderName">Nama Anda</label>
+          <input type="text" id="senderName" placeholder="Contoh: Alexander Johnson" required>
+        </div>
+        <div class="form-group">
+          <label for="feedbackBody">Pesan / Saran</label>
+          <textarea id="feedbackBody" rows="4" placeholder="Tulis kritik, saran, atau temuan error di sini..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Kirim ke GitHub Issues &rarr;</button>
+      </form>
+    </div>
+
+    <!-- Script untuk memproses form menjadi URL GitHub Issue -->
+    <script>
+      document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah reload halaman
+        
+        // Mengambil nilai dari form
+        const name = document.getElementById('senderName').value;
+        const feedback = document.getElementById('feedbackBody').value;
+        
+        // Format teks yang akan dikirim ke GitHub
+        const issueTitle = `Saran dari ${name}`;
+        const issueBody = `**Nama Pengirim:** ${name}\n\n**Pesan:**\n${feedback}\n\n---\n*Dikirim melalui form Portal Tugas*`;
+        
+        // URL repositori Anda (Pastikan fitur Issues aktif di repo setting)
+        const repoUrl = 'https://github.com/riosaputraduha/riosaputraduha.github.io';
+        
+        // Membuat URL khusus untuk pre-fill Issue
+        const newIssueUrl = `${repoUrl}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+        
+        // Buka tab baru menuju GitHub
+        window.open(newIssueUrl, '_blank');
+        
+        // Kosongkan form setelah diklik
+        this.reset();
+      });
+    </script>
+
+    <footer style="margin-top: 60px; padding: 24px 0; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 0.85rem; line-height: 1.6;">
+        <p><strong>Arsip Akademik &bull; Mata Kuliah Digital Kreatif</strong></p>
+        <p>Seluruh materi disusun untuk tujuan evaluasi akademis dan pembelajaran daring.</p>
+        <p style="font-size: 0.78rem; color: #94a3b8; margin-top: 8px;">
+            &copy; 2026 Rio Saputra Duha & Anggota Kelompok &bull; Peer-Reviewed Course Project
+        </p>
+    </footer>
+  </div>
+
+</body>
+</html>
