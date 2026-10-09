@@ -105,9 +105,55 @@
       font-style: italic;
       color: #1e40af;
     }
+
+    /* --- Gaya Tombol Navigasi Back yang Menarik --- */
+    .nav-back {
+      margin-bottom: 30px;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ffffff, #f1f5f9);
+      color: #334155;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 10px 20px;
+      border-radius: 99px; /* Bentuk kapsul (pill) */
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    .btn-back:hover {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      border-color: #2563eb;
+      transform: translateX(-5px); /* Efek tombol bergeser sedikit ke kiri saat disorot */
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+    }
+    /* Gaya untuk ikon panah SVG */
+    .btn-back svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
+    }
+    .btn-back:hover svg {
+      transform: translateX(-4px); /* Panah ikut bergeser ke kiri di dalam tombol */
+    }
   </style>
 </head>
 <body>
+
+  <div class="container">
+    <div class="nav-back">
+      <a href="index.html" class="btn-back">
+        <!-- Ikon panah kiri (SVG) -->
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
+        Kembali ke Beranda
+      </a>
+    </div>
 
   <div class="container">
     <h1>Memahami Transformasi Digital: Dari Sekadar Digitalisasi Hingga Bisnis dan Kreativitas Berbasis AI</h1>
@@ -116,6 +162,7 @@
       <p><strong>Oleh:</strong> Rio Saputra Duha</p>
       <p><strong>NIM:</strong> 19232062</p>
       <p><strong>Mata Kuliah:</strong> Digital Kreatif</p>
+      <p><strong>Kelas:</strong> 19.7C.26</p>
     </div>
 
     <p>Di era revolusi industri 4.0, teknologi telah menyentuh hampir setiap aspek kehidupan manusia. Namun, ada perbedaan mendasar antara sekadar mengubah sesuatu menjadi digital dengan menciptakan nilai ekonomi melalui digital kreatif. Artikel ini akan membahas secara mendalam tentang ekosistem bisnis digital, nilai kreativitas, dan bagaimana <em>Artificial Intelligence</em> (AI) mengubah wajah proses kreatif saat ini.</p>
