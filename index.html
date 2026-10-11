@@ -12,11 +12,11 @@
       --primary: #4f46e5;
       --primary-hover: #4338ca;
       --secondary: #ec4899;
-      --bg: #f3f4f6;
-      --card-bg: rgba(255, 255, 255, 0.85);
-      --text: #1f2937;
-      --text-muted: #6b7280;
-      --border: rgba(229, 231, 235, 0.5);
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
     }
 
     * {
@@ -27,7 +27,7 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 50%, #fdf2f8 100%);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
@@ -37,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* Mencegah scroll body saat modal terbuka */
     body.modal-open {
       overflow: hidden;
     }
@@ -46,132 +45,163 @@
     .blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(100px);
       z-index: -1;
-      opacity: 0.6;
+      opacity: 0.4;
     }
-    .blob-1 { top: -100px; left: -100px; width: 400px; height: 400px; background: #c7d2fe; }
-    .blob-2 { bottom: -100px; right: -100px; width: 500px; height: 500px; background: #fbcfe8; }
-    .blob-3 { top: 40%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: #e0e7ff; }
+    .blob-1 { top: -100px; left: -100px; width: 500px; height: 500px; background: #e0e7ff; }
+    .blob-2 { bottom: -100px; right: -100px; width: 600px; height: 600px; background: #fce7f3; }
 
-    /* --- STICKY HEADER & NAVIGASI --- */
+    /* --- [HEADER TETAP & NAVIGASI] --- */
     .sticky-header {
       position: sticky;
       top: 0;
-      background-color: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       z-index: 1000;
       padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
     }
-    .brand-logo { font-weight: 700; color: #0f172a; font-size: 1.1rem; }
-    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .brand-logo { font-weight: 700; color: var(--text); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;}
+    
+    .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.95rem; transition: color 0.2s ease; }
     .nav-links a:hover { color: var(--primary); }
     
-    .btn-feedback {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: white; text-decoration: none; padding: 8px 16px;
-      border-radius: 8px; font-weight: 600; font-size: 0.9rem;
-      transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+    .header-actions { display: flex; align-items: center; gap: 16px; }
+
+    .btn-feedback-nav {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #ffffff; border: 1px solid var(--border);
+      color: #334155; text-decoration: none; padding: 8px 16px;
+      border-radius: 99px; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
-    .btn-feedback:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3); }
+    .btn-feedback-nav:hover { background: #f8fafc; border-color: #cbd5e1; }
+
+    /* Hamburger Menu Button (Disembunyikan di Desktop) */
+    .hamburger-btn {
+      display: none; background: none; border: none; color: var(--text);
+      cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center;
+    }
+    .hamburger-btn svg { width: 26px; height: 26px; transition: transform 0.2s; }
 
     /* --- LAYOUT UTAMA --- */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; flex: 1; width: 100%; }
-    section, .feedback-section { scroll-margin-top: 100px; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; flex: 1; width: 100%; }
+    section { scroll-margin-top: 100px; margin-bottom: 60px; }
 
-    /* 1. SECTION: HERO */
-    .section-hero { text-align: center; padding: 80px 0 60px 0; animation: fadeInDown 0.8s ease-out; }
+    .section-title { 
+      font-size: 1.4rem; font-weight: 700; color: var(--text); 
+      margin-bottom: 24px; display: flex; align-items: center; gap: 10px; 
+    }
+
+    /* --- [HERO SECTION / MAIN CONTENT] --- */
+    .section-hero { text-align: center; padding: 80px 0 70px 0; animation: fadeInDown 0.8s ease-out; }
+    .badge-hero {
+      display: inline-block; background: #f3e8ff; color: #7e22ce;
+      padding: 6px 18px; border-radius: 99px; font-size: 0.85rem;
+      font-weight: 600; margin-bottom: 24px; border: 1px solid #e9d5ff;
+    }
     .section-hero h1 {
-      font-size: 3rem; font-weight: 700; margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      font-size: 3.2rem; font-weight: 700; margin-bottom: 18px;
+      background: linear-gradient(135deg, #4f46e5, #c026d3);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;
     }
-    .section-hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 650px; margin: 0 auto; }
-    .badge {
-      display: inline-block; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
-      color: var(--primary); padding: 6px 16px; border-radius: 999px; font-size: 0.875rem;
-      font-weight: 700; margin-bottom: 24px; border: 1px solid rgba(79, 70, 229, 0.2);
-    }
-    .section-title { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .section-hero p { color: var(--text-muted); font-size: 1.15rem; max-width: 650px; margin: 0 auto; line-height: 1.7; }
 
-    /* 2. SECTION: KARTU TUGAS INDIVIDU */
-    .section-cards { padding: 20px 0 60px 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; animation: fadeInUp 0.8s ease-out 0.2s both; }
+    /* --- [SECTION 2: TUGAS INDIVIDU] --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; animation: fadeInUp 0.8s ease-out 0.2s both; }
     .card {
-      background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border); border-radius: 24px; padding: 32px;
-      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); display: flex; flex-direction: column;
-      justify-content: space-between; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; 
+      padding: 32px; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%;
+      position: relative; 
+      overflow: hidden;
     }
     .card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary)); transform: scaleX(0);
-      transform-origin: left; transition: transform 0.4s ease;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px; /* Ketebalan garis */
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0); /* Disembunyikan dulu */
+      transform-origin: left; /* Muncul dari arah kiri */
+      transition: transform 0.4s ease;
     }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12); border-color: rgba(79, 70, 229, 0.3); }
-    .card:hover::before { transform: scaleX(1); }
+
+    /* 2. Memunculkan garis (skala 1) saat kartu di-hover */
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); }
     .card-icon {
-      width: 48px; height: 48px; background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
-      border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--primary); font-size: 1.5rem;
+      width: 48px; height: 48px; background: #f5f3ff; border-radius: 12px; 
+      display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 1.5rem;
     }
-    .card h2 { font-size: 1.35rem; font-weight: 700; color: #111827; margin-bottom: 12px; line-height: 1.3; }
+    .card h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 16px; line-height: 1.4; }
     .author-info { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .author-avatar {
-      width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #e0e7ff, #fbcfe8);
+      width: 40px; height: 40px; border-radius: 50%; background: #ede9fe;
       display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--primary); font-size: 0.9rem;
     }
     .author-details { display: flex; flex-direction: column; }
-    .author-name { font-size: 0.95rem; font-weight: 600; color: #374151; }
+    .author-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
     .author-nim { font-size: 0.85rem; color: var(--text-muted); }
-    .card .desc { font-size: 0.95rem; color: #4b5563; margin-bottom: 32px; flex-grow: 1; }
-    .btn {
+    .card .desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 32px; flex-grow: 1; line-height: 1.6; }
+    
+    .btn-card {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
-      color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
-      transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25); border: none; cursor: pointer; font-family: inherit;
+      background: var(--primary); color: #ffffff; text-decoration: none; padding: 12px 24px; 
+      border-radius: 10px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: background 0.2s ease;
+      margin-top: auto;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3); color: white; }
-    .btn svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
-    .btn:hover svg { transform: translateX(4px); }
+    .btn-card:hover { background: var(--primary-hover); }
 
-    /* 3. SECTION: PUBLIKASI KOLABORATIF */
-    .section-collab { padding: 20px 0 60px 0; max-width: 900px; margin: 0 auto; }
+    /* --- [SECTION 3: PUBLIKASI KOLABORATIF] --- */
     .collab-card {
-      background: linear-gradient(135deg, #ffffff, #f8fafc); border: 2px solid #bfdbfe;
-      border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08); text-align: left;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; 
+      padding: 40px; box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05); text-align: left;
     }
-    .collab-card h2 { font-size: 1.8rem; color: #0f172a; margin: 12px 0 16px 0; }
-    .collab-card p { color: #475569; font-size: 1.05rem; margin-bottom: 28px; line-height: 1.7; }
+    .badge-collab {
+      display: inline-block; background: #e0e7ff; color: #3730a3; padding: 6px 16px; 
+      border-radius: 99px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px;
+    }
+    .collab-card h2 { font-size: 1.8rem; color: var(--text); margin: 0 0 16px 0; font-weight: 700; }
+    .collab-card p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; line-height: 1.7; max-width: 900px; }
 
-    /* 4. SECTION: KRITIK & SARAN */
+    /* --- [SECTION 4: KRITIK & SARAN] --- */
     .feedback-section {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px;
-      padding: 40px; max-width: 700px; margin: 0 auto 60px auto; box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+      padding: 48px; max-width: 700px; margin: 0 auto 80px auto; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
     }
-    .feedback-section h2 { margin-top: 0; font-size: 1.8rem; color: #0f172a; margin-bottom: 8px; }
-    .feedback-section p { color: var(--text-muted); margin-bottom: 32px; font-size: 1rem; }
-    .form-group { margin-bottom: 20px; }
+    .feedback-section h2 { margin-top: 0; font-size: 1.8rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+    .feedback-section p { color: var(--text-muted); margin-bottom: 32px; font-size: 1rem; line-height: 1.6; }
+    .form-group { margin-bottom: 24px; }
     .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #334155; font-size: 0.95rem; }
     .form-group input, .form-group textarea {
-      width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 12px; font-family: inherit; font-size: 1rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 10px; 
+      font-family: inherit; font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; color: var(--text);
     }
-    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
     .btn-submit {
-      background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 14px 28px;
-      border-radius: 12px; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; width: 100%;
+      background: #10b981; color: white; border: none; padding: 14px 28px;
+      border-radius: 10px; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: background 0.2s ease; width: 100%;
     }
-    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25); }
+    .btn-submit:hover { background: #059669; }
 
-    /* --- STYLING MODAL (POPUP) TUGAS KELOMPOK --- */
+    /* --- [FOOTER TETAP] --- */
+    footer { 
+      text-align: center; padding: 40px 24px; color: var(--text-muted); 
+      font-size: 0.95rem; border-top: 1px solid var(--border); background: transparent;
+    }
+    footer p { margin-bottom: 8px; }
+
     /* --- MODAL / POPUP TUGAS KELOMPOK (macOS Style) --- */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 9999;
@@ -183,36 +213,30 @@
     
     .modal-content {
       background: #ffffff; width: 92%; max-width: 900px; max-height: 85vh;
-      border-radius: 12px; /* Lengkungan khas window macOS */
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.1);
+      border-radius: 12px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.1);
       display: flex; flex-direction: column; overflow: hidden;
       transform: scale(0.96); opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
 
-    /* macOS Window Title Bar */
+    /* macOS Effects */
+    .modal-content.maximized { width: 100vw; max-width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0; transform: none !important; }
+    .modal-content.minimized { height: auto; max-height: none; }
+    .modal-content.minimized .modal-body { display: none; }
+
     .modal-header {
       padding: 12px 16px; border-bottom: 1px solid #d1d1d1;
       background: linear-gradient(to bottom, #fbfbfb, #f0f0f0);
       display: flex; justify-content: center; align-items: center; position: relative;
     }
+    .modal-header h2 { font-size: 0.95rem; color: #4b5563; margin: 0; font-weight: 600; letter-spacing: 0.2px; }
     
-    .modal-header h2 { 
-      font-size: 0.95rem; color: #4b5563; margin: 0; font-weight: 600; letter-spacing: 0.2px; 
-    }
-    
-    /* Traffic Light Buttons (Close, Minimize, Maximize) */
-    .macos-controls {
-      position: absolute; left: 16px; display: flex; gap: 8px; align-items: center;
-    }
-    .macos-btn {
-      width: 12px; height: 12px; border-radius: 50%; cursor: default;
-      display: inline-block; box-sizing: border-box;
-    }
-    .macos-close { background: #ff5f56; border: 1px solid #e0443e; cursor: pointer; }
-    .macos-close:hover { filter: brightness(0.8); }
+    .macos-controls { position: absolute; left: 16px; display: flex; gap: 8px; align-items: center; }
+    .macos-btn { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; display: inline-block; box-sizing: border-box; }
+    .macos-close { background: #ff5f56; border: 1px solid #e0443e; }
     .macos-minimize { background: #ffbd2e; border: 1px solid #dea123; }
     .macos-maximize { background: #27c93f; border: 1px solid #1aab29; }
+    .macos-btn:hover { filter: brightness(0.8); }
 
     .modal-body { padding: 32px 40px; overflow-y: auto; color: #334155; font-size: 1rem; line-height: 1.75; }
     .modal-body h2 { font-size: 1.35rem; color: #1e293b; margin: 32px 0 16px 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; font-weight: 700;}
@@ -223,143 +247,242 @@
     .modal-body ul, .modal-body ol { padding-left: 24px; margin-bottom: 16px; }
     .modal-body li { margin-bottom: 8px; }
 
-    /* --- Efek Interaksi Tombol macOS --- */
-    /* Perbesar (Fullscreen) */
-    .modal-content.maximized {
-      width: 100vw;
-      max-width: 100vw;
-      height: 100vh;
-      max-height: 100vh;
-      border-radius: 0;
-      transform: none !important;
+    /* Animations */
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* =========================================
+       MEDIA QUERIES - FULLY RESPONSIVE (DENGAN HAMBURGER)
+       ========================================= */
+    /* Untuk Desktop - sembunyikan tombol hamburger */
+    @media (min-width: 769px) {
+      .hamburger-btn { display: none !important; }
     }
-    
-    /* Perkecil (Melipat konten, hanya sisa header) */
-    .modal-content.minimized {
-      height: auto;
-      max-height: none;
+
+    @media (max-width: 1024px) {
+      .section-hero h1 { font-size: 2.8rem; }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     }
-    .modal-content.minimized .modal-body {
-      display: none;
+
+    @media (max-width: 768px) {
+      /* Header Setup */
+      .sticky-header { padding: 12px 16px; position: sticky; }
+      
+      /* Hamburger Tampil */
+      .hamburger-btn { display: flex !important; }
+      
+      /* Ubah Menu Navigasi Menjadi Dropdown (Slide Down) */
+      .nav-links { 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        right: 0; 
+        background: rgba(255, 255, 255, 0.98); 
+        backdrop-filter: blur(16px); 
+        -webkit-backdrop-filter: blur(16px); 
+        flex-direction: column; 
+        padding: 16px 24px; 
+        gap: 8px; 
+        border-bottom: 1px solid var(--border); 
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); 
+        
+        /* Animasi Sembunyi ke Atas */
+        transform: translateY(-20px); 
+        opacity: 0; 
+        visibility: hidden; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+      }
+      
+      /* Class Active saat Hamburger diKlik */
+      .nav-links.active { 
+        transform: translateY(0); 
+        opacity: 1; 
+        visibility: visible; 
+      }
+
+      /* Style Tautan Dropdown */
+      .nav-links a { 
+        font-size: 1.05rem; 
+        padding: 12px 0; 
+        display: block; 
+        border-bottom: 1px solid #f1f5f9; 
+        width: 100%;
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      
+      /* Tombol Kritik & Saran di Header (Sembunyikan Teks) */
+      .btn-feedback-nav span { display: none; }
+      .btn-feedback-nav::before { content: "💡"; display: block; }
+      .btn-feedback-nav { padding: 8px 12px; font-size: 1.1rem; }
+      
+      /* Layout Container */
+      .container { padding: 0 16px; }
+      section { margin-bottom: 40px; }
+      .section-hero { padding: 50px 0 30px 0; }
+      .section-hero h1 { font-size: 2.2rem; }
+      .section-hero p { font-size: 1rem; }
+      
+      /* Cards */
+      .grid { grid-template-columns: 1fr; gap: 20px; }
+      .card { padding: 24px; }
+      
+      /* Collab & Feedback */
+      .collab-card, .feedback-section { padding: 24px; }
+      .collab-card h2, .feedback-section h2 { font-size: 1.4rem; }
+      .feedback-section { margin-bottom: 40px; }
+      
+      /* Modal Popup */
+      .modal-content { width: 95%; max-height: 90vh; }
+      .modal-header { padding: 12px; }
+      .macos-controls { left: 12px; gap: 6px; }
+      .macos-btn { width: 10px; height: 10px; }
+      .modal-header h2 { font-size: 0.85rem; text-align: right; padding-left: 60px; }
+      .modal-body { padding: 20px; }
+      
+      /* Footer */
+      footer { padding: 30px 16px; }
     }
-    
-    /* Tambahan kursor agar terlihat bisa diklik */
-    .macos-minimize, .macos-maximize {
-      cursor: pointer;
-    }
-    .macos-minimize:hover, .macos-maximize:hover {
-      filter: brightness(0.8);
+
+    @media (max-width: 480px) {
+      .section-hero h1 { font-size: 1.8rem; }
+      .brand-logo { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background Efek Halus -->
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
 
-  <!-- STICKY HEADER DENGAN NAVIGASI TENGAH -->
+  <!-- [HEADER TETAP] -->
   <nav class="sticky-header">
     <div class="brand-logo">📚 Portal Tugas Kelompok</div>
-    <div class="nav-links">
-      <a href="#tugas-individu">Tugas Anggota</a>
-      <a href="#tugas-kelompok">Publikasi Kolaboratif</a>
+    
+    <!-- Menu Navigasi (Tampil Dropdown di Mobile) -->
+    <div class="nav-links" id="nav-links">
+      <a href="#tugas-individu" class="nav-item">Tugas Anggota</a>
+      <a href="#tugas-kelompok" class="nav-item">Publikasi Kolaboratif</a>
     </div>
-    <a href="#kritik-saran" class="btn-feedback">💡 Kritik & Saran</a>
+    
+    <div class="header-actions">
+      <!-- Tombol Kritik & Saran -->
+      <a href="#kritik-saran" class="btn-feedback-nav">
+        <span>💡 Kritik & Saran</span>
+      </a>
+      
+      <!-- Tombol Hamburger (Khusus Mobile) -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+        <!-- Ikon Garis Tiga (Menu) -->
+        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <!-- Ikon Silang (X - Sembunyi by default) -->
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <div class="container">
     
-    <!-- 1. SECTION: HERO -->
+    <!-- [HERO SECTION / MAIN CONTENT] -->
     <header class="section-hero">
-      <span class="badge">19.7C.26 &ndash; Digital Kreatif</span>
+      <span class="badge-hero">19.7C.26 &ndash; Digital Kreatif</span>
       <h1>Repository Tugas Kelompok</h1>
       <p>Eksplorasi ide, analisis, dan publikasi tugas mahasiswa dalam memahami transformasi digital kreatif.</p>
     </header>
 
-    <!-- 2. SECTION: KARTU TUGAS ANGGOTA -->
-    <section id="tugas-individu" class="section-cards">
+    <!-- [SECTION 2: TUGAS INDIVIDU] -->
+    <section id="tugas-individu">
       <h2 class="section-title">👤 Publikasi Tugas Individu</h2>
       <div class="grid">
+        
         <div class="card">
-          <div class="card-icon">🚀</div>
-          <h2>Memahami Transformasi Digital</h2>
-          <div class="author-info">
-            <div class="author-avatar">RD</div>
-            <div class="author-details">
-              <span class="author-name">Rio Saputra Duha</span>
-              <span class="author-nim">NIM: 19232062</span>
+          <div>
+            <div class="card-icon">🚀</div>
+            <h2>Memahami Transformasi Digital</h2>
+            <div class="author-info">
+              <div class="author-avatar">RD</div>
+              <div class="author-details">
+                <span class="author-name">Rio Saputra Duha</span>
+                <span class="author-nim">NIM: 19232062</span>
+              </div>
             </div>
+            <p class="desc">Pembahasan mendalam mengenai perbedaan digitalisasi dengan digital kreatif, nilai ekonomi, dan peran AI dalam industri kreatif.</p>
           </div>
-          <p class="desc">Pembahasan mendalam mengenai perbedaan digitalisasi dengan digital kreatif, nilai ekonomi, dan peran AI dalam industri kreatif.</p>
-          <a href="digital-creative.html" class="btn">
-            Baca Artikel <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </a>
+          <a href="digital-creative.html" class="btn-card">Baca Artikel &rarr;</a>
         </div>
+
         <div class="card">
-          <div class="card-icon">💡</div>
-          <h2>Esensi Digital Kreatif: Membedah Inovasi dan Peran AI</h2>
-          <div class="author-info">
-            <div class="author-avatar">RJ</div>
-            <div class="author-details">
-              <span class="author-name">Raden Jihaad F I A</span>
-              <span class="author-nim">NIM: 19230765</span>
+          <div>
+            <div class="card-icon">💡</div>
+            <h2>Esensi Digital Kreatif: Membedah Inovasi dan Peran AI</h2>
+            <div class="author-info">
+              <div class="author-avatar">RJ</div>
+              <div class="author-details">
+                <span class="author-name">Raden Jihaad F I A</span>
+                <span class="author-nim">NIM: 19230765</span>
+              </div>
             </div>
+            <p class="desc">Analisis komprehensif mengenai garis demarkasi digitalisasi operasional versus inovasi kreatif, pilar bisnis digital berskala masif, serta peran AI.</p>
           </div>
-          <p class="desc">Analisis komprehensif mengenai garis demarkasi digitalisasi operasional versus inovasi kreatif, pilar bisnis digital berskala masif, serta peran AI.</p>
-          <a href="tugas-anggota2.html" class="btn">
-            Baca Artikel <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </a>
+          <a href="tugas-anggota2.html" class="btn-card">Baca Artikel &rarr;</a>
         </div>
+
         <div class="card">
-          <div class="card-icon">🎨</div>
-          <h2>Eksplorasi Digital Kreatif, Model Bisnis, dan Kolaborasi AI</h2>
-          <div class="author-info">
-            <div class="author-avatar">FD</div>
-            <div class="author-details">
-              <span class="author-name">Faiz Dzakiy Helsan</span>
-              <span class="author-nim">NIM: 19231870</span>
+          <div>
+            <div class="card-icon">🎨</div>
+            <h2>Eksplorasi Digital Kreatif, Model Bisnis, dan Kolaborasi AI</h2>
+            <div class="author-info">
+              <div class="author-avatar">FD</div>
+              <div class="author-details">
+                <span class="author-name">Faiz Dzakiy Helsan</span>
+                <span class="author-nim">NIM: 19231870</span>
+              </div>
             </div>
+            <p class="desc">Mengulas esensi digital kreatif yang memadukan inovasi dan nilai ekonomi, karakteristik model bisnis digital modern, serta mitigasi risiko AI.</p>
           </div>
-          <p class="desc">Mengulas esensi digital kreatif yang memadukan inovasi dan nilai ekonomi, karakteristik model bisnis digital modern, serta mitigasi risiko AI.</p>
-          <a href="tugas-anggota3.html" class="btn">
-            Baca Artikel <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </a>
+          <a href="tugas-anggota3.html" class="btn-card">Baca Artikel &rarr;</a>
         </div>
+        
         <div class="card">
-          <div class="card-icon">📝</div>
-          <h2>Belum Dibuat</h2>
-          <div class="author-info">
-            <div class="author-avatar">HM</div>
-            <div class="author-details">
-              <span class="author-name">Haji Marsindo</span>
-              <span class="author-nim">NIM: 19231047</span>
+          <div>
+            <div class="card-icon">📝</div>
+            <h2>Belum Dibuat</h2>
+            <div class="author-info">
+              <div class="author-avatar">A4</div>
+              <div class="author-details">
+                <span class="author-name">Haji Marsindo</span>
+                <span class="author-nim">NIM: 19231047</span>
+              </div>
             </div>
+            <p class="desc">Deskripsi singkat mengenai topik tugas atau artikel inovatif yang dikerjakan oleh anggota keempat kelompok ini.</p>
           </div>
-          <p class="desc">Masih dalam proses penulisan.</p>
-          <a href="tugas-anggota4.html" class="btn">
-            Baca Artikel <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </a>
+          <a href="tugas-anggota4.html" class="btn-card">Baca Artikel &rarr;</a>
         </div>
+
       </div>
     </section>
 
-    <!-- 3. SECTION: PUBLIKASI KOLABORATIF (Dengan Popup Trigger) -->
-    <section id="tugas-kelompok" class="section-collab">
+    <!-- [SECTION 3: PUBLIKASI KOLABORATIF] -->
+    <section id="tugas-kelompok">
       <h2 class="section-title">🌟 Publikasi Kolaboratif</h2>
       <div class="collab-card">
-        <span class="badge" style="background: #dbeafe; color: #1e40af; border: none; margin-bottom: 12px;">Tugas Kelompok</span>
+        <span class="badge-collab">Tugas Kelompok</span>
         <h2>Analisis Ekosistem Digital Kreatif & AI</h2>
         <p>Kajian komprehensif kelompok mengenai optimalisasi efisiensi alur kerja AI, perdebatan Generative AI dalam desain grafis, personalisasi pemasaran, hingga kerangka regulasi hak cipta dan kesiapan kompetensi kreator.</p>
-        <!-- Tombol ini memicu fungsi JS untuk buka popup -->
-        <button id="btn-open-modal" class="btn">
-          Buka Laporan Lengkap 
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <button id="btn-open-modal" class="btn-card">
+          Buka Laporan Lengkap &rarr;
         </button>
       </div>
     </section>
 
-    <!-- 4. SECTION: KRITIK & SARAN -->
+    <!-- [SECTION 4: KRITIK & SARAN] -->
     <section id="kritik-saran" class="feedback-section">
       <h2>Kirim Kritik & Saran</h2>
       <p>Masukan Anda akan dikirimkan sebagai <strong>Issue</strong> secara langsung ke repositori GitHub kami.</p>
@@ -376,32 +499,27 @@
       </form>
     </section>
 
-    <footer>
-        <p><strong>Arsip Akademik &bull; Mata Kuliah Digital Kreatif</strong></p>
-        <p style="margin: 8px 0;">Seluruh materi disusun untuk tujuan evaluasi akademis dan pembelajaran daring.</p>
-        <p style="font-size: 0.8rem; margin-top: 16px;">&copy; 2026 Rio Saputra Duha & Anggota Kelompok &bull; Peer-Reviewed Course Project</p>
-    </footer>
-
   </div>
+
+  <!-- [FOOTER TETAP] -->
+  <footer>
+      <p><strong>Arsip Akademik &bull; Mata Kuliah Digital Kreatif</strong></p>
+      <p>Seluruh materi disusun untuk tujuan evaluasi akademis dan pembelajaran daring.</p>
+      <p style="font-size: 0.85rem; margin-top: 16px;">&copy; 2026 Rio Saputra Duha & Anggota Kelompok &bull; Peer-Reviewed Course Project</p>
+  </footer>
 
   <!-- ================= MODAL / POPUP TUGAS KELOMPOK ================= -->
   <div class="modal-overlay" id="modal-tugas">
     <div class="modal-content">
-      
-      <!-- Header Modal -->
       <div class="modal-header">
         <div class="macos-controls">
-          <!-- Tombol Merah (Tutup) -->
           <div class="macos-btn macos-close" id="btn-close-modal" title="Tutup"></div>
-          <!-- Tombol Kuning (Perkecil) -->
           <div class="macos-btn macos-minimize" id="btn-minimize-modal" title="Perkecil"></div>
-          <!-- Tombol Hijau (Perbesar) -->
           <div class="macos-btn macos-maximize" id="btn-maximize-modal" title="Perbesar"></div>
         </div>
         <h2>Tugas 2: Digital Kreatif</h2>
       </div>
       
-      <!-- Body Modal (Isi Konten PDF) -->
       <div class="modal-body">
         <div class="meta-box">
           <p><strong>Mata Kuliah:</strong> 19.7C.26 &ndash; Digital Kreatif</p>
@@ -442,14 +560,39 @@
         <h2>Soal 6: Keterbatasan Konteks Budaya AI</h2>
         <div class="question-box">Apa saja keterbatasan AI dalam hal konteks budaya lokal dan emosi manusia dalam menulis karya kreatif?</div>
         <p>AI memproses makna secara linguistik literal, bukan melalui pemahaman sosial emosional. Frasa bahasa lokal bisa memiliki makna sarkas atau apresiasi tergantung nada dan situasi yang tak mampu dipahami AI secara utuh. Terlebih, AI tidak memiliki <em>lived experience</em>, sehingga naskah yang ditulis AI tanpa sentuhan penyuntingan manusia akan terasa hampa, generik, dan kurang kedalaman emosi.</p>
-        
       </div>
     </div>
   </div>
 
-  <!-- ================= SCRIPT KONTROL HALAMAN ================= -->
+  <!-- ================= SCRIPT ================= -->
   <script>
-    // 1. Script Form Kritik & Saran
+    // Script Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinksContainer = document.getElementById('nav-links');
+    const iconMenu = hamburgerBtn.querySelector('.icon-menu');
+    const iconClose = hamburgerBtn.querySelector('.icon-close');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    // Buka/Tutup Menu saat Hamburger diklik
+    hamburgerBtn.addEventListener('click', () => {
+      navLinksContainer.classList.toggle('active');
+      const isActive = navLinksContainer.classList.contains('active');
+      
+      // Ganti ikon Garis Tiga (Menu) menjadi Silang (X)
+      iconMenu.style.display = isActive ? 'none' : 'block';
+      iconClose.style.display = isActive ? 'block' : 'none';
+    });
+
+    // Otomatis Tutup Dropdown saat Tautan (Link) diklik
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navLinksContainer.classList.remove('active');
+        iconMenu.style.display = 'block';
+        iconClose.style.display = 'none';
+      });
+    });
+
+    // Script Form Kritik & Saran
     document.getElementById('feedbackForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const name = document.getElementById('senderName').value;
@@ -471,39 +614,33 @@
     const modalContent = modalTugas.querySelector('.modal-content');
     const body = document.body;
 
-    // Fungsi Buka Modal
     btnOpenModal.addEventListener('click', () => {
       modalTugas.classList.add('active');
       body.classList.add('modal-open');
     });
 
-    // Fungsi Reset Ukuran Modal (Dipanggil saat modal ditutup)
     const resetModalSize = () => {
       setTimeout(() => {
         modalContent.classList.remove('maximized', 'minimized');
-      }, 300); // Direset setelah animasi tutup selesai
+      }, 300);
     };
 
-    // Fungsi Tutup Modal
     btnCloseModal.addEventListener('click', () => {
       modalTugas.classList.remove('active');
       body.classList.remove('modal-open');
       resetModalSize();
     });
 
-    // Fungsi Perbesar (Maximize)
     btnMaximizeModal.addEventListener('click', () => {
       modalContent.classList.toggle('maximized');
-      modalContent.classList.remove('minimized'); // Batalkan efek lipat jika ada
+      modalContent.classList.remove('minimized');
     });
 
-    // Fungsi Perkecil (Minimize / Lipat)
     btnMinimizeModal.addEventListener('click', () => {
       modalContent.classList.toggle('minimized');
-      modalContent.classList.remove('maximized'); // Batalkan efek fullscreen jika ada
+      modalContent.classList.remove('maximized');
     });
 
-    // Tutup dengan klik di luar area konten
     modalTugas.addEventListener('click', (e) => {
       if (e.target === modalTugas) {
         modalTugas.classList.remove('active');
@@ -512,7 +649,6 @@
       }
     });
 
-    // Tutup dengan tombol Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modalTugas.classList.contains('active')) {
         modalTugas.classList.remove('active');
