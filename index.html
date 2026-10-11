@@ -172,67 +172,83 @@
     .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25); }
 
     /* --- STYLING MODAL (POPUP) TUGAS KELOMPOK --- */
+    /* --- MODAL / POPUP TUGAS KELOMPOK (macOS Style) --- */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 9999;
-      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .modal-overlay.active { opacity: 1; visibility: visible; }
     
     .modal-content {
-      background: #ffffff; width: 92%; max-width: 900px; max-height: 90vh;
-      border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      display: flex; flex-direction: column;
-      transform: translateY(30px) scale(0.95); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #ffffff; width: 92%; max-width: 900px; max-height: 85vh;
+      border-radius: 12px; /* Lengkungan khas window macOS */
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column; overflow: hidden;
+      transform: scale(0.96); opacity: 0; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .modal-overlay.active .modal-content { transform: translateY(0) scale(1); opacity: 1; }
+    .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
 
+    /* macOS Window Title Bar */
     .modal-header {
-      padding: 24px 32px; border-bottom: 1px solid #e2e8f0;
-      display: flex; justify-content: space-between; align-items: center;
-      background: #f8fafc; border-radius: 24px 24px 0 0;
+      padding: 12px 16px; border-bottom: 1px solid #d1d1d1;
+      background: linear-gradient(to bottom, #fbfbfb, #f0f0f0);
+      display: flex; justify-content: center; align-items: center; position: relative;
     }
-    .modal-header h2 { font-size: 1.4rem; color: #0f172a; margin: 0; }
-    .btn-close-modal {
-      background: #e2e8f0; border: none; width: 36px; height: 36px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
-      color: #475569; transition: all 0.2s ease;
+    
+    .modal-header h2 { 
+      font-size: 0.95rem; color: #4b5563; margin: 0; font-weight: 600; letter-spacing: 0.2px; 
     }
-    .btn-close-modal:hover { background: #ef4444; color: white; transform: rotate(90deg); }
+    
+    /* Traffic Light Buttons (Close, Minimize, Maximize) */
+    .macos-controls {
+      position: absolute; left: 16px; display: flex; gap: 8px; align-items: center;
+    }
+    .macos-btn {
+      width: 12px; height: 12px; border-radius: 50%; cursor: default;
+      display: inline-block; box-sizing: border-box;
+    }
+    .macos-close { background: #ff5f56; border: 1px solid #e0443e; cursor: pointer; }
+    .macos-close:hover { filter: brightness(0.8); }
+    .macos-minimize { background: #ffbd2e; border: 1px solid #dea123; }
+    .macos-maximize { background: #27c93f; border: 1px solid #1aab29; }
 
-    .modal-body {
-      padding: 32px; overflow-y: auto; color: #334155; font-size: 1rem; line-height: 1.75;
-    }
-    /* Style Spesifik Konten Dalam Modal */
-    .modal-body h2 { font-size: 1.35rem; color: #1e293b; margin: 32px 0 16px 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; }
+    .modal-body { padding: 32px 40px; overflow-y: auto; color: #334155; font-size: 1rem; line-height: 1.75; }
+    .modal-body h2 { font-size: 1.35rem; color: #1e293b; margin: 32px 0 16px 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 8px; font-weight: 700;}
     .modal-body h2:first-child { margin-top: 0; }
-    .modal-body h3 { font-size: 1.15rem; color: #334155; margin: 24px 0 12px 0; }
+    .modal-body h3 { font-size: 1.15rem; color: #334155; margin: 24px 0 12px 0; font-weight: 600;}
     .modal-body .meta-box { background: #f8fafc; border-left: 4px solid var(--primary); padding: 20px; border-radius: 8px; margin-bottom: 32px; }
     .modal-body .question-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 8px; font-style: italic; color: #1e40af; margin: 16px 0; }
     .modal-body ul, .modal-body ol { padding-left: 24px; margin-bottom: 16px; }
     .modal-body li { margin-bottom: 8px; }
-    .modal-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.95rem; }
-    .modal-body th, .modal-body td { border: 1px solid #e2e8f0; padding: 12px 16px; text-align: left; }
-    .modal-body th { background-color: #f1f5f9; font-weight: 600; }
-    .modal-body tr:nth-child(even) { background-color: #fcfcfc; }
 
-    /* Footer */
-    footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid rgba(0,0,0,0.05); animation: fadeIn 1s ease-out 0.6s both; }
-
-    /* Animations */
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .section-hero { padding: 60px 0 40px 0; }
-      .section-hero h1 { font-size: 2.25rem; }
-      .grid { grid-template-columns: 1fr; }
-      .feedback-section, .collab-card { padding: 24px; }
-      .modal-content { width: 95%; height: 95vh; max-height: 95vh; }
-      .modal-body { padding: 20px; }
+    /* --- Efek Interaksi Tombol macOS --- */
+    /* Perbesar (Fullscreen) */
+    .modal-content.maximized {
+      width: 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      transform: none !important;
+    }
+    
+    /* Perkecil (Melipat konten, hanya sisa header) */
+    .modal-content.minimized {
+      height: auto;
+      max-height: none;
+    }
+    .modal-content.minimized .modal-body {
+      display: none;
+    }
+    
+    /* Tambahan kursor agar terlihat bisa diklik */
+    .macos-minimize, .macos-maximize {
+      cursor: pointer;
+    }
+    .macos-minimize:hover, .macos-maximize:hover {
+      filter: brightness(0.8);
     }
   </style>
 </head>
@@ -332,7 +348,7 @@
     <section id="tugas-kelompok" class="section-collab">
       <h2 class="section-title">🌟 Publikasi Kolaboratif</h2>
       <div class="collab-card">
-        <span class="badge" style="background: #dbeafe; color: #1e40af; border: none; margin-bottom: 12px;">Tugas Kelompok 2</span>
+        <span class="badge" style="background: #dbeafe; color: #1e40af; border: none; margin-bottom: 12px;">Tugas Kelompok</span>
         <h2>Analisis Ekosistem Digital Kreatif & AI</h2>
         <p>Kajian komprehensif kelompok mengenai optimalisasi efisiensi alur kerja AI, perdebatan Generative AI dalam desain grafis, personalisasi pemasaran, hingga kerangka regulasi hak cipta dan kesiapan kompetensi kreator.</p>
         <!-- Tombol ini memicu fungsi JS untuk buka popup -->
@@ -374,10 +390,15 @@
       
       <!-- Header Modal -->
       <div class="modal-header">
+        <div class="macos-controls">
+          <!-- Tombol Merah (Tutup) -->
+          <div class="macos-btn macos-close" id="btn-close-modal" title="Tutup"></div>
+          <!-- Tombol Kuning (Perkecil) -->
+          <div class="macos-btn macos-minimize" id="btn-minimize-modal" title="Perkecil"></div>
+          <!-- Tombol Hijau (Perbesar) -->
+          <div class="macos-btn macos-maximize" id="btn-maximize-modal" title="Perbesar"></div>
+        </div>
         <h2>Tugas 2: Digital Kreatif</h2>
-        <button class="btn-close-modal" id="btn-close-modal">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
       </div>
       
       <!-- Body Modal (Isi Konten PDF) -->
@@ -441,37 +462,62 @@
       this.reset();
     });
 
-    // 2. Script Kontrol Modal/Popup Tugas Kelompok
+    // Script Modal/Popup Tugas Kelompok
     const btnOpenModal = document.getElementById('btn-open-modal');
     const btnCloseModal = document.getElementById('btn-close-modal');
+    const btnMinimizeModal = document.getElementById('btn-minimize-modal');
+    const btnMaximizeModal = document.getElementById('btn-maximize-modal');
     const modalTugas = document.getElementById('modal-tugas');
+    const modalContent = modalTugas.querySelector('.modal-content');
     const body = document.body;
 
-    // Buka Modal
+    // Fungsi Buka Modal
     btnOpenModal.addEventListener('click', () => {
       modalTugas.classList.add('active');
       body.classList.add('modal-open');
     });
 
-    // Tutup Modal dari tombol X
+    // Fungsi Reset Ukuran Modal (Dipanggil saat modal ditutup)
+    const resetModalSize = () => {
+      setTimeout(() => {
+        modalContent.classList.remove('maximized', 'minimized');
+      }, 300); // Direset setelah animasi tutup selesai
+    };
+
+    // Fungsi Tutup Modal
     btnCloseModal.addEventListener('click', () => {
       modalTugas.classList.remove('active');
       body.classList.remove('modal-open');
+      resetModalSize();
     });
 
-    // Tutup Modal jika area gelap di luar konten diklik
+    // Fungsi Perbesar (Maximize)
+    btnMaximizeModal.addEventListener('click', () => {
+      modalContent.classList.toggle('maximized');
+      modalContent.classList.remove('minimized'); // Batalkan efek lipat jika ada
+    });
+
+    // Fungsi Perkecil (Minimize / Lipat)
+    btnMinimizeModal.addEventListener('click', () => {
+      modalContent.classList.toggle('minimized');
+      modalContent.classList.remove('maximized'); // Batalkan efek fullscreen jika ada
+    });
+
+    // Tutup dengan klik di luar area konten
     modalTugas.addEventListener('click', (e) => {
       if (e.target === modalTugas) {
         modalTugas.classList.remove('active');
         body.classList.remove('modal-open');
+        resetModalSize();
       }
     });
 
-    // Tutup Modal dengan tombol ESC di keyboard
+    // Tutup dengan tombol Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modalTugas.classList.contains('active')) {
         modalTugas.classList.remove('active');
         body.classList.remove('modal-open');
+        resetModalSize();
       }
     });
   </script>
